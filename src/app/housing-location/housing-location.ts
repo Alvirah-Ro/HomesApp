@@ -18,7 +18,7 @@ import { RouterLink } from '@angular/router';
       <a [routerLink]="['/details', housingLocation().id]">Learn More</a>
     </section>
   `,
-  styles: ``
+  styleUrls: ['./housing-location.css'],
 })
 export class HousingLocation {
   housingLocation = input.required<HousingLocationInfo>();
