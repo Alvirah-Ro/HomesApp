@@ -29,6 +29,8 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
       </section>
       <section class="listing-apply">
         <h2 class="section-heading">Apply now to live here</h2>
+
+        // Form needs to use ngSubmit, also consider isolating form for cleaner readability
         <form [formGroup]="applyForm" (submit)="submitApplication()">
           <label for="first-name">First Name</label>
           <input id="first-name" type="text" formControlName="firstName" />
@@ -62,6 +64,7 @@ export class Details {
     });
   }
   
+  // Need to use ngSubmit instead of submit
   submitApplication() {
     this.housingService.submitApplication(
       this.applyForm.value.firstName ?? '',
