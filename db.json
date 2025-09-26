@@ -103,28 +103,31 @@
   ],
   "applications": [
     {
-      "id": "fcc4",
-      "firstName": "Melody",
-      "lastName": "Singer",
-      "email": "m.singer@gmail.com"
+      "id": "ef77",
+      "firstName": "Mac",
+      "lastName": "McDonald",
+      "email": "arches@m.com",
+      "locationId": "8",
+      "locationName": "Seriously Safe Towns",
+      "locationCity": "Oakland"
     },
     {
-      "id": "20cc",
-      "firstName": "Melody",
-      "lastName": "Singer",
-      "email": "m.singer@gmail.com"
+      "id": "465e",
+      "firstName": "Hope",
+      "lastName": "Hoppington",
+      "email": "hopehop@gmail.com",
+      "locationId": "5",
+      "locationName": "Hopeful Apartment Group",
+      "locationCity": "Oakland"
     },
     {
-      "id": "ade1",
-      "firstName": "Melody",
-      "lastName": "Singer",
-      "email": "m.singer@gmail.com"
-    },
-    {
-      "id": "c100",
-      "firstName": "Simon",
-      "lastName": "James",
-      "email": "majesticfur@meow.com"
+      "id": "65f2",
+      "firstName": "James",
+      "lastName": "Johnson",
+      "email": "johnson42@email",
+      "locationId": "9",
+      "locationName": "Capital Safe Towns",
+      "locationCity": "Portland"
     }
   ]
 }

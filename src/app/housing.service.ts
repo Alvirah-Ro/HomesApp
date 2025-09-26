@@ -16,8 +16,22 @@ export class HousingService {
 
   constructor(private http: HttpClient) {}
 
-  submitApplication(firstName: string, lastName: string, email: string) {
-    const application = { firstName, lastName, email };
+  submitApplication(
+    firstName: string,
+    lastName: string,
+    email: string, 
+    locationId: number | string,
+    locationName: string,
+    locationCity: string
+  ) {
+    const application = {
+      firstName,
+      lastName,
+      email,
+      locationId,
+      locationName,
+      locationCity
+    };
     return this.http.post(this.applicationsUrl, application).subscribe();
   }
 
