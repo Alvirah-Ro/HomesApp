@@ -2,11 +2,12 @@ import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HousingService } from '../housing.service';
 import { HousingLocationInfo } from '../housinglocation';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-details',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   template: `
     <article>
       <img
@@ -30,17 +31,31 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
       <section class="listing-apply">
         <h2 class="section-heading">Apply now to live here</h2>
 
-        // Form needs to use ngSubmit, also consider isolating form for cleaner readability
-        <form [formGroup]="applyForm" (submit)="submitApplication()">
+        <form [formGroup]="applyForm" (ngSubmit)="submitApplication()">
           <label for="first-name">First Name</label>
           <input id="first-name" type="text" formControlName="firstName" />
+          <div *ngIf="applyForm.controls['firstName'].invalid && applyForm.controls['firstName'].touched">
+            First name is required.
+          </div>
 
           <label for="last-name">Last Name</label>
           <input id="last-name" type="text" formControlName="lastName" />
+          <div *ngIf="applyForm.controls['lastName'].invalid && applyForm.controls['lastName'].touched">
+            Last name is required.
+          </div>
+
 
           <label for="email">Email</label>
           <input id="email" type="email" formControlName="email" />
-          <button type="submit" class="primary">Apply now</button>
+          <div *ngIf="applyForm.controls['email'].hasError('required') && applyForm.controls['email'].touched">
+            Email is required.
+          </div>
+          <div *ngIf="applyForm.controls['email'].hasError('email') && applyForm.controls['email'].touched">
+            Please enter a valid email.
+          </div>
+
+
+          <button type="submit" class="primary" [disabled]="applyForm.invalid">Apply now</button>
         </form>
       </section>
     </article>
@@ -51,10 +66,11 @@ export class Details {
   route: ActivatedRoute = inject(ActivatedRoute);
   housingService = inject(HousingService);
   housingLocation: HousingLocationInfo | undefined;
+
   applyForm = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-    email: new FormControl(''),
+    firstName: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
+    lastName: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
+    email: new FormControl('', { nonNullable: true, validators: [Validators.required, Validators.email] }),
   });
 
   constructor() {
